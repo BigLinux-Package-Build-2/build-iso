@@ -150,19 +150,19 @@ jobs:
             gh release upload ${release} --repo ${{ secrets.REPO_ISO_TESTING }} --clobber $i
           done
           
-      - name: Upload Release_Tag
-        shell: bash
-        run: |
-          echo "${{ secrets.SSH_UPLOAD }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          git clone git@github.com:BigLinux-Package-Build/big-releases.git
-          cd big-releases
-          echo ${{ needs.prepare-release.outputs.release_tag }} >> testing
-          git add --all
-          git config --local user.email "${{ secrets.GIT_USER }}@users.noreply.github.com"
-          git config --local user.name "${{ secrets.GIT_USER }}"
-          git commit -m "new release"
-          git push
+      # - name: Upload Release_Tag
+      #   shell: bash
+      #   run: |
+      #     echo "${{ secrets.SSH_UPLOAD }}" > ~/.ssh/id_ed25519
+      #     chmod 600 ~/.ssh/id_ed25519
+      #     git clone git@github.com:BigLinux-Package-Build/big-releases.git
+      #     cd big-releases
+      #     echo ${{ needs.prepare-release.outputs.release_tag }} >> testing
+      #     git add --all
+      #     git config --local user.email "${{ secrets.GIT_USER }}@users.noreply.github.com"
+      #     git config --local user.name "${{ secrets.GIT_USER }}"
+      #     git commit -m "new release"
+      #     git push
           
       # Tmate ##
       - name: Setup TMATE Session
@@ -177,9 +177,6 @@ jobs:
       - name: Telegram Alerta Fail
         if: ${{ failure() }}
         run: |
-          #echo ${{ github.token }} | gh auth login --with-token
-          #gh release delete ${{ needs.prepare-release.outputs.release_tag }} -y --repo ${{ github.repository }}
-          
           curl -X POST -H 'Content-Type: application/json' -d '{"chat_id": "${{ secrets.CHAT_ID }}", "text": "Falha ao gerar ISO  ${{ github.workflow }} link https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}", "disable_notification": false, "disable_web_page_preview": true}' ${{ secrets.MESSAGE_BOT_KEY }}
 
       #- name: Prepare and Push to CDN77
