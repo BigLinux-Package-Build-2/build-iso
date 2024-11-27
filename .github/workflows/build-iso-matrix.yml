@@ -48,7 +48,7 @@ jobs:
       #     format: 'YY.MM.DD'
       
       - name: Build and Upload GitHub
-        uses: BigLinux-Package-Build/build-iso2@main
+        uses: BigLinux-Package-Build-2/build-iso@main
         with:
           edition: ${{ matrix.edition }}
           manjarobranch: ${{ matrix.manjarobranch }}
