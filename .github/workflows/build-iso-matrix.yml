@@ -115,7 +115,7 @@ jobs:
           
           #push files
           for i in *.iso *.torrent *.pkgs *.md5; do
-          test -e $i && rsync -vaPpz -e "ssh -p ${{ secrets.PKGBUILD_PORT }}" $i ${{ secrets.PKGBUILD_USER }}@$ip:${{ secrets.NIMBUS_DIR }}
+          test -e $i && rsync -vaPpz -e "ssh -p ${{ secrets.PKGBUILD_PORT }}" $i ${{ secrets.PKGBUILD_USER }}@$ip:${{ secrets.ISO_DIR }}
           done
           
 #       - name: Upload OSDN
