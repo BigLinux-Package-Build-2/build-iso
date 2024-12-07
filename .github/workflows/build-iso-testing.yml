@@ -42,7 +42,7 @@ jobs:
         
     steps:
       - name: Build
-        uses: BigLinux-Package-Build/build-iso@main
+        uses: BigLinux-Package-Build-2/build-iso@main
         with:
           edition: ${{ matrix.edition }}
           manjarobranch: ${{ matrix.manjarobranch }}

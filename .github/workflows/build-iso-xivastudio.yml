@@ -41,7 +41,7 @@ jobs:
         #latest
     steps:
       - name: Build and Upload
-        uses: BigLinux-Package-Build/build-iso@main
+        uses: BigLinux-Package-Build-2/build-iso@main
         with:
           edition: ${{ matrix.edition }}
           manjarobranch: ${{ matrix.manjarobranch }}
