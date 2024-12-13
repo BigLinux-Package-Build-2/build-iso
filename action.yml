@@ -267,12 +267,13 @@ runs:
       env:
         CUSTOM_REPO: ${{ inputs.custom-repo }}
         # COMMIT: b3efa6f6929bfc7fc62328b64ab4ebc0800111ce
+        COMMIT: 7e49d96e72d54389aff6bd1cc5d1242711f0c898
       run: |
         echo "### install-manjaro-tools ###"
         #make majaro-tools
         sudo git clone https://gitlab.manjaro.org/tools/development-tools/manjaro-tools.git
         pushd manjaro-tools
-          # sudo git checkout $COMMIT
+          sudo git checkout $COMMIT
           sudo make SYSCONFDIR=/etc PREFIX=/usr
           sudo make SYSCONFDIR=/etc PREFIX=/usr install_base
           sudo make SYSCONFDIR=/etc PREFIX=/usr install_yaml
